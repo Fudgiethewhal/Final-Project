@@ -14,7 +14,7 @@ namespace EcommerceGemQuest.User
             if (Request.Url.AbsoluteUri.ToString().Contains("Default.aspx"))
             {
                 Control sliderUserControl = (Control)Page.LoadControl("SliderUserControl.ascx");
-                pnlSliderUC.Controls.Add(sliderUserControl)
+                pnlSliderUC.Controls.Add(sliderUserControl);
             }
         }
     }
