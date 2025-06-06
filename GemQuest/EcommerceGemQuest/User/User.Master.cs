@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace EcommerceGemQuest.User
 {
-    public partial class Site1 : System.Web.UI.MasterPage
+    public partial class User : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
