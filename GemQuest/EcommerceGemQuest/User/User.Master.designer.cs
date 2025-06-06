@@ -11,7 +11,7 @@ namespace EcommerceGemQuest.User
 {
 
 
-    public partial class Site1
+    public partial class User
     {
 
         /// <summary>

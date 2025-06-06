@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.Master.cs" Inherits="EcommerceGemQuest.User.Site1" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="User.Master.cs" Inherits="EcommerceGemQuest.User.User" %>
 
 <!DOCTYPE html>
 
@@ -25,6 +25,22 @@
 
     <!-- Customized Bootstrap Stylesheet -->
     <link href="../UserTemplate/css/style.css" rel="stylesheet">
+
+
+    <script>
+        $(function () {
+            //this will get the full URL at the address bar
+            var url = window.location.href;
+
+            //passes on every "a" tag
+            $("#navbarCollapse a").each(function () {
+                //checks if its the same on the address bar
+                if (url == (this.href)) {
+                    $(this).addClass("active");
+                }
+            });
+        });
+    </script>
     
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
