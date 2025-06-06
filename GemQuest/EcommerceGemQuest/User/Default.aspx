@@ -34,7 +34,6 @@
     </div>
     <!-- Featured End -->
 
-
     <!-- Categories Start -->
     <div class="container-fluid pt-5">
         <div class="row px-xl-5 pb-3">
