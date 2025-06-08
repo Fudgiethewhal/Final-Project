@@ -11,6 +11,7 @@
                     <hr />
 
                     <div class="form-body">
+
                         <label>Category Name</label>
                         <div class="row">
                             <div class="col-md-12">
@@ -22,6 +23,17 @@
                                 </div>
                             </div>
                         </div>
+
+                        <label>Category Image</label>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <asp:FileUpload  ID="fuCategoryImage" runat="server" CssClass="form-control"/>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
