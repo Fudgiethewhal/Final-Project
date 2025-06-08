@@ -28,10 +28,22 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <asp:FileUpload  ID="fuCategoryImage" runat="server" CssClass="form-control"/>
-                                    
+                                    <asp:FileUpload  ID="fuCategoryImage" runat="server" CssClass="form-control"/>                                    
                                 </div>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <asp:CheckBox ID="cbIsActive" runat="server" Text="&nbsp; IsActive"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-action pb-5">
+                        <div class="text-left">
+                            <asp:Button ID="btnAddOrUpdate" runat="server" CssClass="btn btn-info" Text="Add" OnClick="btnAddOrUpdate_Click" />
+                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-dark" Text="Reset" OnClick="btn-Clear_Click" />
                         </div>
 
                     </div>
