@@ -40,13 +40,16 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="form-action pb-5">
                         <div class="text-left">
                             <asp:Button ID="btnAddOrUpdate" runat="server" CssClass="btn btn-info" Text="Add" OnClick="btnAddOrUpdate_Click" />
-                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-dark" Text="Reset" OnClick="btn-Clear_Click" />
+                            <asp:Button ID="btnClear" runat="server" CssClass="btn btn-dark" Text="Reset" OnClick="btnClear_Click" />
                         </div>
-
                     </div>
+                
+                <div>
+                    <asp:Image ID="imagePreview" runat="server" CssClass="img-thumbnail" AlternateText="" />
                 </div>
             </div>
         </div>

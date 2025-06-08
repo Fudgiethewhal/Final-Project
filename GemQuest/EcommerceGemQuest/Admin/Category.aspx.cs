@@ -13,5 +13,15 @@ namespace EcommerceGemQuest.Admin
         {
 
         }
+
+        protected void btnAddOrUpdate_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnClear_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
