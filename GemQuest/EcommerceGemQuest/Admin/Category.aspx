@@ -28,14 +28,14 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <asp:FileUpload  ID="fuCategoryImage" runat="server" CssClass="form-control"/>                                    
+                                    <asp:FileUpload ID="fuCategoryImage" runat="server" CssClass="form-control" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <asp:CheckBox ID="cbIsActive" runat="server" Text="&nbsp; IsActive"/>
+                                    <asp:CheckBox ID="cbIsActive" runat="server" Text="&nbsp; IsActive" />
                                 </div>
                             </div>
                         </div>
@@ -47,9 +47,11 @@
                             <asp:Button ID="btnClear" runat="server" CssClass="btn btn-dark" Text="Reset" OnClick="btnClear_Click" />
                         </div>
                     </div>
-                
-                <div>
-                    <asp:Image ID="imagePreview" runat="server" CssClass="img-thumbnail" AlternateText="" />
+
+                    <div>
+                        <asp:Image ID="imagePreview" runat="server" CssClass="img-thumbnail" AlternateText="" />
+                    </div>
+
                 </div>
             </div>
         </div>
