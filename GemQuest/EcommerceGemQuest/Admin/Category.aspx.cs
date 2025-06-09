@@ -19,7 +19,7 @@ namespace EcommerceGemQuest.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblMsg.Visible = false;
         }
 
         protected void btnAddOrUpdate_Click(object sender, EventArgs e)
@@ -42,12 +42,14 @@ namespace EcommerceGemQuest.Admin
                     imagePath = "Images/Category/" + newImageName.ToString() + fileExtension;
                     fuCategoryImage.PostedFile.SaveAs(Server.MapPath("~/Images/Category/") + newImageName.ToString() + fileExtension);
                     cmd.Parameters.AddWithValue("@CategoryImageUrl", imagePath);
+                    isValidToExecute = true;
                 }
                 else
                 {
                     lblMsg.Visible = false;
                     lblMsg.Text = "Please select .jpg, .jpeg, or .png image";
                     lblMsg.CssClass = "alert alert-danger";
+                    isValidToExecute = false;
                 }    
             }
             else
@@ -63,12 +65,12 @@ namespace EcommerceGemQuest.Admin
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
-                    actionName = categoryId == 0 ? "inserted" : "Successful";
+                    actionName = categoryId == 0 ? "inserted" : "updated";
                     lblMsg.Visible = true;
-                    lblMsg.Text = "Category" + actionName + "Successful!";
+                    lblMsg.Text = " Category " + actionName + " successfully! ";
                     lblMsg.CssClass = "alert alert-success";
                 }
-                catch (Exception ex)
+                catch(Exception ex)
                 {
                     lblMsg.Visible = true;
                     lblMsg.Text = "Error- " + ex.Message;
@@ -83,7 +85,16 @@ namespace EcommerceGemQuest.Admin
 
         protected void btnClear_Click(object sender, EventArgs e)
         {
+            clear();
+        }
 
+        void clear()
+        {
+            txtCategoryName.Text = string.Empty;
+            cbIsActive.Checked = false;
+            hfCategoryId.Value = "0";
+            btnAddOrUpdate.Text = "Add";
+            imagePreview.ImageUrl = string.Empty;
         }
     }
 }
