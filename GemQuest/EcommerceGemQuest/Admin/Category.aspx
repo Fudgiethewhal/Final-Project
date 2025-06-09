@@ -65,8 +65,32 @@
         <div class="col-sm-12 col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Category</h4>
+                    <h4 class="card-title">Category List</h4>
                     <hr />
+                    <div class="table-responsive">
+                        <asp:Repeater ID="rCategory" runat="server">
+                            <HeaderTemplate>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th class="table-plus">Name</th>
+                                            <th>Image</th>
+                                            <th>IsActive</th>
+                                            <th>CreatedDate</th>
+                                            <th class="datatable-nosort">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                            </ItemTemplate>
+                            <FooterTemplate>
+                                    </tbody>
+                                </table>
+                            </FooterTemplate>
+                        </asp:Repeater>
+                    </div>
                 </div>
             </div>
         </div>

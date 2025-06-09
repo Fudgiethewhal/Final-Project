@@ -39,7 +39,7 @@ namespace EcommerceGemQuest.Admin
                 {
                     string newImageName = Utils.getUniqueId();
                     fileExtension = Path.GetExtension(fuCategoryImage.FileName);
-                    imagePath  = "Images/Category/" + newImageName.ToString() + fileExtension;
+                    imagePath = "Images/Category/" + newImageName.ToString() + fileExtension;
                     fuCategoryImage.PostedFile.SaveAs(Server.MapPath("~/Images/Category/") + newImageName.ToString() + fileExtension);
                     cmd.Parameters.AddWithValue("@CategoryImageUrl", imagePath);
                     isValidToExecute = true;
