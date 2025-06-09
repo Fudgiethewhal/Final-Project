@@ -81,12 +81,31 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-
                             </HeaderTemplate>
                             <ItemTemplate>
+                                <tr>
+                                    <td class="table-plus"><%# Eval("CategoryName") %> </td>
+                                    <td>
+                                        <img width="40" src="<%# EcommerceGemQuest.Utils.getImageUrl( Eval("CategoryImageUrl")) %>" alt="image" />
+                                    </td>
+                                    <td>
+                                        <asp:Label ID="lblIsActive" runat="server"
+                                            Text ='<%# (bool)Eval("IsActive") == true ? "Active" : "In-Active" %>'
+                                            CssClass='<%# (bool)Eval("IsActive") == true ? "badge badge-success" 
+                                                : "badge badge-danger" %>' >
+
+                                        </asp:Label>
+                                    </td>
+                                    <td> <%# Eval("CreatedDate") %> </td>
+                                    <td>
+                                        <asp:LinkButton ID="lbEdit" Text="Edit" runat="server" CssClass="badge badge-primary">
+                                            <i class="fas fa-edit"></i>
+                                        </asp:LinkButton>
+                                    </td>
+                                </tr> 
                             </ItemTemplate>
                             <FooterTemplate>
-                                    </tbody>
+                                </tbody>
                                 </table>
                             </FooterTemplate>
                         </asp:Repeater>
