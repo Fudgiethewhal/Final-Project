@@ -20,6 +20,20 @@ namespace EcommerceGemQuest.Admin
         protected void Page_Load(object sender, EventArgs e)
         {
             lblMsg.Visible = false;
+            getCategories();
+        }
+
+        void getCategories()
+        {
+            con = new SqlConnection(Utils.getConnection());
+            cmd = new SqlCommand("Category_Crud", con);
+            cmd.Parameters.AddWithValue("@Action", "GETALL");
+            cmd.CommandType = CommandType.StoredProcedure;
+            sda = new SqlDataAdapter(cmd);
+            dt = new DataTable();
+            sda.Fill(dt);
+            rCategory.DataSource = dt;
+            rCategory.DataBind();
         }
 
         protected void btnAddOrUpdate_Click(object sender, EventArgs e)
