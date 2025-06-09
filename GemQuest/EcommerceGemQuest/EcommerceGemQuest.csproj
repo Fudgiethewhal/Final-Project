@@ -718,6 +718,7 @@
     <Compile Include="User\User.Master.designer.cs">
       <DependentUpon>User.Master</DependentUpon>
     </Compile>
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminTemplate\assets\extra-libs\datatables.net-bs4\package.json" />
@@ -1055,6 +1056,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Category\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
