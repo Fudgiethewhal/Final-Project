@@ -70,7 +70,7 @@
                     <div class="table-responsive">
                         <asp:Repeater ID="rCategory" runat="server">
                             <HeaderTemplate>
-                                <table>
+                                <table class="table data-table-export table-hover nowrap">
                                     <thead>
                                         <tr>
                                             <th class="table-plus">Name</th>
