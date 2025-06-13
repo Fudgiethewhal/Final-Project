@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="EcommerceGemQuest.Admin.Admin" %>
+﻿appcmd set config /section:system.webServer/directoryBrowse /enabled:true cd <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="EcommerceGemQuest.Admin.Admin" %>
 
 <!DOCTYPE html>
 
@@ -12,7 +12,7 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="../AdminTemplate/assets/images/favicon.png">
-    <title>Adminmart Template - The Ultimate Multipurpose admin template</title>
+    <title>Admin Area</title>
     <!-- Custom CSS -->
     <link href="../AdminTemplate/assets/extra-libs/c3/c3.min.css" rel="stylesheet">
     <link href="../AdminTemplate/assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
@@ -21,9 +21,10 @@
     <link href="../AdminTemplate/dist/css/style.min.css" rel="stylesheet">
 
     <!--Datatable CSS -->
-    <link href="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\css\dataTables.bootstrap4.min.css" rel="stylesheet" />
-    <link href="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\css\responsive.bootstrap4.min.css" rel="stylesheet" />
-    <link href="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\css\icon-font.min.css" rel="stylesheet" />
+    <link href="..AdminTemplate/datatables/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="..AdminTemplate/datatables/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="..AdminTemplate/datatables/css/icon-font.min.css" rel="stylesheet" />
+
 
     <script src="../AdminTemplate/assets/libs/jquery/dist/jquery.min.js"></script>
 
@@ -153,14 +154,14 @@
                     <nav class="sidebar-nav">
                         <ul id="sidebarnav">
                             <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="Dashboard.aspx"
-                                aria-expanded="false"><i data-feather="home" class="feather-icon"></i><span
+                                aria-expanded="false"><i class="fas fa-tachometer-alt"></i><span
                                     class="hide-menu">Dashboard</span></a></li>
                             <li class="list-divider"></li>
-                            <li class="nav-small-cap"><span class="hide-menu">Applications</span></li>
+                            <li class="nav-small-cap"><span class="hide-menu">Categories</span></li>
 
-                            <li class="sidebar-item"><a class="sidebar-link" href="Contact.aspx"
-                                aria-expanded="false"><i data-feather="tag" class="feather-icon"></i><span
-                                    class="hide-menu">Ticket List
+                            <li class="sidebar-item"><a class="sidebar-link" href="Category.aspx"
+                                aria-expanded="false"><i class="fas fa-tag"></i><span
+                                    class="hide-menu">Category
                                 </span></a>
                             </li>
                             <li class="sidebar-item"><a class="sidebar-link sidebar-link" href="app-chat.html"
@@ -375,12 +376,12 @@
                 <div class="page-breadcrumb">
                     <div class="row">
                         <div class="col-7 align-self-center">
-                            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1">Good Morning Jason!</h3>
+                            <h3 class="page-title text-truncate text-dark font-weight-medium mb-1"> <%Response.Write(Session["breadCrumbTitle"]); %></h3>
                             <div class="d-flex align-items-center">
                                 <nav aria-label="breadcrumb">
                                     <ol class="breadcrumb m-0 p-0">
-                                        <li class="breadcrumb-item"><a href="index.html">Dashboard</a>
-                                        </li>
+                                        <li class="breadcrumb-item"><a href="Dashboard.aspx">Dashboard</a></li>
+                                        <li class="breadcrumb-item"text-muted active" aria-current="page"> <%Response.Write(Session["breadCrumbPage"]); %></li>
                                     </ol>
                                 </nav>
                             </div>
@@ -446,20 +447,21 @@
     <script src="../AdminTemplate/dist/js/pages/dashboards/dashboard1.min.js"></script>
 
     <!--Datatables JS -->
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\jquery.dataTables.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\buttons.bootstrap4.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\dataTables.responsive.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\responsive.bootstrap4.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/dataTables.bootstrap4.min.js"></script>
+    <%--<script src="../AdminTemplate/datatables/js/buttons.bootstrap4.min.js"></script>--%>
+    <script src="../AdminTemplate/datatables/js/dataTables.responsive.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/responsive.bootstrap4.min.js"></script>
     <!--Datatables Buttons for export -->
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\dataTables.buttons.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\buttons.bootstrap4.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\buttons.print.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\buttons.html5.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\buttons.flash.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\pdfmake.min.js"></script>
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\vfs_fonts.js"></script>
+    <script src="../AdminTemplate/datatables/js/dataTables.buttons.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/buttons.bootstrap4.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/buttons.print.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/buttons.html5.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/buttons.flash.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/pdfmake.min.js"></script>
+    <script src="../AdminTemplate/datatables/js/vfs_fonts.js"></script>
      <!--Datatables Settings JS -->
-    <script src="file:///c:\users\15756\repos\final%20project\gemquest\ecommercegemquest\admintemplate\datatables\js\datatable-setting.js"></script>
+    <script src="../AdminTemplate/datatables/js/datatable-setting.js"></script>
 
 </body>
 </html>

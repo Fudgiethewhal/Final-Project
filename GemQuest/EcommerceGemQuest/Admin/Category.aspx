@@ -1,5 +1,29 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.Master" AutoEventWireup="true" CodeBehind="Category.aspx.cs" Inherits="EcommerceGemQuest.Admin.Category" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <script>
+        window.onload = function () {
+            var seconds = 5;
+            setTimeout(function () {
+                document.getElementById("<%=lblMsg.ClientID %>").style.display = "none";
+            }, seconds * 1000);
+        };
+    </script>
+
+    <script>
+        function ImagePreview(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#<%=imagePreview.ClientID%>').prop('src', e.target.result)
+                        .width(200)
+                        .height(200);
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -33,7 +57,8 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <asp:FileUpload ID="fuCategoryImage" runat="server" CssClass="form-control" />
+                                    <asp:FileUpload ID="fuCategoryImage" runat="server" CssClass="form-control"
+                                        onchange ="ImagePreview(this);"/>
                                     <asp:HiddenField ID="hfCategoryId" runat="server" Value="0"/>
                                 </div>
                             </div>
@@ -68,7 +93,7 @@
                     <h4 class="card-title">Category List</h4>
                     <hr />
                     <div class="table-responsive">
-                        <asp:Repeater ID="rCategory" runat="server">
+                        <asp:Repeater ID="rCategory" runat="server" OnItemCommand="rCategory_ItemCommand">
                             <HeaderTemplate>
                                 <table class="table data-table-export table-hover nowrap">
                                     <thead>
@@ -93,15 +118,16 @@
                                             Text ='<%# (bool)Eval("IsActive") == true ? "Active" : "In-Active" %>'
                                             CssClass='<%# (bool)Eval("IsActive") == true ? "badge badge-success" 
                                                 : "badge badge-danger" %>' >
-
                                         </asp:Label>
                                     </td>
                                     <td> <%# Eval("CreatedDate") %> </td>
                                     <td>
-                                        <asp:LinkButton ID="lbEdit" Text="Edit" runat="server" CssClass="badge badge-primary">
+                                        <asp:LinkButton ID="lbEdit" Text="Edit" runat="server" CssClass="badge badge-primary"
+                                            CommandArgument='<%#Eval("CategoryId")%>' CommandName="edit" CausesValidation="false">
                                             <i class="fas fa-edit"></i>
                                         </asp:LinkButton>
                                         <asp:LinkButton ID="lbDelete" Text="Delete" runat="server" CssClass="badge badge-danger">
+                                            CommandArgument='<%#Eval("CategoryId")%>' CommandName="delete" CausesValidation="false">
                                             <i class="fas fa-trash-alt"></i> 
                                         </asp:LinkButton>
                                     </td>

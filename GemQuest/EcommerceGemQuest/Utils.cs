@@ -45,7 +45,7 @@ namespace EcommerceGemQuest
         public static string getImageUrl(Object url)
         {
             string url1 = string.Empty;
-            if (string.IsNullOrEmpty(url.ToString()) || url == DBNull.Value)
+            if(string.IsNullOrEmpty(url.ToString()) || url == DBNull.Value )
             {
                 url1 = "../Images/No_image.png";
             }

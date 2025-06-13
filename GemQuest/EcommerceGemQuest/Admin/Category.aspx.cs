@@ -19,6 +19,8 @@ namespace EcommerceGemQuest.Admin
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Session["breadCrumbTitle"] = "Manage Category";
+            Session["breadCrumbPage"] = "Category";
             lblMsg.Visible = false;
             getCategories();
         }
@@ -49,7 +51,7 @@ namespace EcommerceGemQuest.Admin
             cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);
             if (fuCategoryImage.HasFile)
             {
-                if(Utils.isValidExtension(fuCategoryImage.FileName))
+                if (Utils.isValidExtension(fuCategoryImage.FileName))
                 {
                     string newImageName = Utils.getUniqueId();
                     fileExtension = Path.GetExtension(fuCategoryImage.FileName);
@@ -64,7 +66,7 @@ namespace EcommerceGemQuest.Admin
                     lblMsg.Text = "Please select .jpg, .jpeg, or .png image";
                     lblMsg.CssClass = "alert alert-danger";
                     isValidToExecute = false;
-                }    
+                }
             }
             else
             {
@@ -72,7 +74,7 @@ namespace EcommerceGemQuest.Admin
 
             }
 
-            if(isValidToExecute)
+            if (isValidToExecute)
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
@@ -83,8 +85,10 @@ namespace EcommerceGemQuest.Admin
                     lblMsg.Visible = true;
                     lblMsg.Text = " Category " + actionName + " successfully! ";
                     lblMsg.CssClass = "alert alert-success";
+                    getCategories();
+                    clear();
                 }
-                catch(Exception ex)
+                catch (Exception ex)
                 {
                     lblMsg.Visible = true;
                     lblMsg.Text = "Error- " + ex.Message;
@@ -110,5 +114,55 @@ namespace EcommerceGemQuest.Admin
             btnAddOrUpdate.Text = "Add";
             imagePreview.ImageUrl = string.Empty;
         }
+
+        protected void rCategory_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            lblMsg.Visible = false;
+            if(e.CommandName == "edit")
+            {
+                con = new SqlConnection(Utils.getConnection());
+                cmd = new SqlCommand("Category_Crud", con);
+                cmd.Parameters.AddWithValue("@Action", "GETBYID");
+                cmd.Parameters.AddWithValue("@CategoryId", e.CommandArgument);
+                cmd.CommandType = CommandType.StoredProcedure;
+                sda = new SqlDataAdapter(cmd);
+                dt = new DataTable();
+                sda.Fill(dt);
+                txtCategoryName.Text = dt.Rows[0]["CategoryName"].ToString();
+                cbIsActive.Checked = Convert.ToBoolean(dt.Rows[0]["IsActive"]);
+                imagePreview.ImageUrl = string.IsNullOrEmpty(dt.Rows[0]["CategoryImageUrl"].ToString() ) ? "../Images.No_image.png" : "../" + dt.Rows[0]["CategoryImageUrl"].ToString();
+                imagePreview.Height = 200;
+                imagePreview.Width = 200;
+                hfCategoryId.Value = dt.Rows[0]["CategoryId"].ToString();
+                btnAddOrUpdate.Text = "Update"; 
+            }
+            else if (e.CommandName == "delete")
+            {
+                con = new SqlConnection(Utils.getConnection());
+                cmd = new SqlCommand("Category_Crud", con);
+                cmd.Parameters.AddWithValue("@Action", "DELETE");
+                cmd.Parameters.AddWithValue("@CategoryId", e.CommandArgument);
+                cmd.CommandType = CommandType.StoredProcedure;
+                try
+                {
+                    con.Open();
+                    cmd.ExecuteNonQuery();                    
+                    lblMsg.Visible = true;
+                    lblMsg.Text = "Category deleted successfully!";
+                    lblMsg.CssClass = "alert alert-success";
+                    getCategories();
+                   
+                }
+                catch (Exception ex)
+                {
+                    lblMsg.Visible = true;
+                    lblMsg.Text = "Error- " + ex.Message;
+                    lblMsg.CssClass = "alert alert-danger";
+                }
+                finally
+                {
+                    con.Close();
+                }
+            }
     }
 }
