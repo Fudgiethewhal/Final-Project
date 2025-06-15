@@ -29,7 +29,7 @@ namespace EcommerceGemQuest.Admin
         {
             con = new SqlConnection(Utils.getConnection());
             cmd = new SqlCommand("Category_Crud", con);
-            cmd.Parameters.AddWithValue("@Action", "GETALL");
+            cmd.Parameters.AddWithValue("@p_Action", "GETALL");
             cmd.CommandType = CommandType.StoredProcedure;
             sda = new SqlDataAdapter(cmd);
             dt = new DataTable();
@@ -45,10 +45,10 @@ namespace EcommerceGemQuest.Admin
             int categoryId = Convert.ToInt32(hfCategoryId.Value);
             con = new SqlConnection(Utils.getConnection());
             cmd = new SqlCommand("Category_Crud", con);
-            cmd.Parameters.AddWithValue("@Action", categoryId == 0 ? "INSERT" : "UPDATE");
-            cmd.Parameters.AddWithValue("@CategoryId", categoryId);
-            cmd.Parameters.AddWithValue("@CategoryName", txtCategoryName.Text.Trim());
-            cmd.Parameters.AddWithValue("@IsActive", cbIsActive.Checked);
+            cmd.Parameters.AddWithValue("@p_Action", categoryId == 0 ? "INSERT" : "UPDATE");
+            cmd.Parameters.AddWithValue("@p_CategoryId", categoryId);
+            cmd.Parameters.AddWithValue("@p_CategoryName", txtCategoryName.Text.Trim());
+            cmd.Parameters.AddWithValue("@p_IsActive", cbIsActive.Checked);
             if (fuCategoryImage.HasFile)
             {
                 if (Utils.isValidExtension(fuCategoryImage.FileName))
@@ -57,7 +57,7 @@ namespace EcommerceGemQuest.Admin
                     fileExtension = Path.GetExtension(fuCategoryImage.FileName);
                     imagePath = "Images/Category/" + newImageName.ToString() + fileExtension;
                     fuCategoryImage.PostedFile.SaveAs(Server.MapPath("~/Images/Category/") + newImageName.ToString() + fileExtension);
-                    cmd.Parameters.AddWithValue("@CategoryImageUrl", imagePath);
+                    cmd.Parameters.AddWithValue("@p_CategoryImageUrl", imagePath);
                     isValidToExecute = true;
                 }
                 else
@@ -122,8 +122,8 @@ namespace EcommerceGemQuest.Admin
             {
                 con = new SqlConnection(Utils.getConnection());
                 cmd = new SqlCommand("Category_Crud", con);
-                cmd.Parameters.AddWithValue("@Action", "GETBYID");
-                cmd.Parameters.AddWithValue("@CategoryId", e.CommandArgument);
+                cmd.Parameters.AddWithValue("@p_Action", "GETBYID");
+                cmd.Parameters.AddWithValue("@p_CategoryId", e.CommandArgument);
                 cmd.CommandType = CommandType.StoredProcedure;
                 sda = new SqlDataAdapter(cmd);
                 dt = new DataTable();
@@ -140,8 +140,8 @@ namespace EcommerceGemQuest.Admin
             {
                 con = new SqlConnection(Utils.getConnection());
                 cmd = new SqlCommand("Category_Crud", con);
-                cmd.Parameters.AddWithValue("@Action", "DELETE");
-                cmd.Parameters.AddWithValue("@CategoryId", e.CommandArgument);
+                cmd.Parameters.AddWithValue("@p_Action", "DELETE");
+                cmd.Parameters.AddWithValue("@p_CategoryId", e.CommandArgument);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
