@@ -2,20 +2,19 @@
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
-using System.Data.SqlClient;
-using Dapper;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using MySql.Data.MySqlClient;
 
 namespace EcommerceGemQuest.Admin
 {
     public partial class Category : System.Web.UI.Page
     {
-        SqlConnection con;
-        SqlCommand cmd;
-        SqlDataAdapter sda;
+        MySqlConnection con;
+        MySqlCommand cmd;
+        MySqlDataAdapter sda;
         DataTable dt;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -28,11 +27,15 @@ namespace EcommerceGemQuest.Admin
 
         void getCategories()
         {
-            con = new SqlConnection(Utils.getConnection());
-            cmd = new SqlCommand("Category_Crud", con);
+            con = new MySqlConnection(Utils.getConnection());
+            cmd = new MySqlCommand("Category_Crud", con);
             cmd.Parameters.AddWithValue("@p_Action", "GETALL");
+            cmd.Parameters.AddWithValue("@p_CategoryId", DBNull.Value);
+            cmd.Parameters.AddWithValue("@p_CategoryName", DBNull.Value);
+            cmd.Parameters.AddWithValue("@p_CategoryImageUrl", DBNull.Value);
+            cmd.Parameters.AddWithValue("@p_IsActive", DBNull.Value);
             cmd.CommandType = CommandType.StoredProcedure;
-            sda = new SqlDataAdapter(cmd);
+            sda = new MySqlDataAdapter(cmd);
             dt = new DataTable();
             sda.Fill(dt);
             rCategory.DataSource = dt;
@@ -44,8 +47,8 @@ namespace EcommerceGemQuest.Admin
             string actionName= string.Empty, imagePath = string.Empty, fileExtension = string.Empty;
             bool isValidToExecute = false;
             int categoryId = Convert.ToInt32(hfCategoryId.Value);
-            con = new SqlConnection(Utils.getConnection());
-            cmd = new SqlCommand("Category_Crud", con);
+            con = new MySqlConnection(Utils.getConnection());
+            cmd = new MySqlCommand("Category_Crud", con);
             cmd.Parameters.AddWithValue("@p_Action", categoryId == 0 ? "INSERT" : "UPDATE");
             cmd.Parameters.AddWithValue("@p_CategoryId", categoryId);
             cmd.Parameters.AddWithValue("@p_CategoryName", txtCategoryName.Text.Trim());
@@ -119,40 +122,40 @@ namespace EcommerceGemQuest.Admin
         protected void rCategory_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
             lblMsg.Visible = false;
-            if(e.CommandName == "edit")
+            if (e.CommandName == "edit")
             {
-                con = new SqlConnection(Utils.getConnection());
-                cmd = new SqlCommand("Category_Crud", con);
+                con = new MySqlConnection(Utils.getConnection());
+                cmd = new MySqlCommand("Category_Crud", con);
                 cmd.Parameters.AddWithValue("@p_Action", "GETBYID");
                 cmd.Parameters.AddWithValue("@p_CategoryId", e.CommandArgument);
                 cmd.CommandType = CommandType.StoredProcedure;
-                sda = new SqlDataAdapter(cmd);
+                sda = new MySqlDataAdapter(cmd);
                 dt = new DataTable();
                 sda.Fill(dt);
                 txtCategoryName.Text = dt.Rows[0]["CategoryName"].ToString();
                 cbIsActive.Checked = Convert.ToBoolean(dt.Rows[0]["IsActive"]);
-                imagePreview.ImageUrl = string.IsNullOrEmpty(dt.Rows[0]["CategoryImageUrl"].ToString() ) ? "../Images.No_image.png" : "../" + dt.Rows[0]["CategoryImageUrl"].ToString();
+                imagePreview.ImageUrl = string.IsNullOrEmpty(dt.Rows[0]["CategoryImageUrl"].ToString()) ? "../Images.No_image.png" : "../" + dt.Rows[0]["CategoryImageUrl"].ToString();
                 imagePreview.Height = 200;
                 imagePreview.Width = 200;
                 hfCategoryId.Value = dt.Rows[0]["CategoryId"].ToString();
-                btnAddOrUpdate.Text = "Update"; 
+                btnAddOrUpdate.Text = "Update";
             }
             else if (e.CommandName == "delete")
             {
-                con = new SqlConnection(Utils.getConnection());
-                cmd = new SqlCommand("Category_Crud", con);
+                con = new MySqlConnection(Utils.getConnection());
+                cmd = new MySqlCommand("Category_Crud", con);
                 cmd.Parameters.AddWithValue("@p_Action", "DELETE");
                 cmd.Parameters.AddWithValue("@p_CategoryId", e.CommandArgument);
                 cmd.CommandType = CommandType.StoredProcedure;
                 try
                 {
                     con.Open();
-                    cmd.ExecuteNonQuery();                    
+                    cmd.ExecuteNonQuery();
                     lblMsg.Visible = true;
                     lblMsg.Text = "Category deleted successfully!";
                     lblMsg.CssClass = "alert alert-success";
                     getCategories();
-                   
+
                 }
                 catch (Exception ex)
                 {
@@ -165,5 +168,6 @@ namespace EcommerceGemQuest.Admin
                     con.Close();
                 }
             }
+        }
     }
 }
