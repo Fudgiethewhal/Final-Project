@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Data.SqlClient;
+using Dapper;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -40,7 +41,7 @@ namespace EcommerceGemQuest.Admin
 
         protected void btnAddOrUpdate_Click(object sender, EventArgs e)
         {
-            string actionName = string.Empty, imagePath = string.Empty, fileExtension = string.Empty;
+            string actionName= string.Empty, imagePath = string.Empty, fileExtension = string.Empty;
             bool isValidToExecute = false;
             int categoryId = Convert.ToInt32(hfCategoryId.Value);
             con = new SqlConnection(Utils.getConnection());
