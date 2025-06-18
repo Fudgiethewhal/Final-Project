@@ -2,6 +2,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!--div id="myChart" class="ct-chart ct-perfect-fourth"></!--div-->
+
+    <!-- Chart Container -->
+<div class="container my-5">
+  <h4 class="text-center mb-4">Sales Overview</h4>
+  <div id="myChart" class="ct-chart ct-perfect-fourth"></div>
+</div>
+
+
 
     <!-- Featured Start -->
     <div class="container-fluid pt-5">
@@ -179,5 +188,33 @@
         </div>
     </div>
     <!-- Vendor End -->
+
+    <!-- Chartist Libraries -->
+<script src="../AdminTemplate/assets/libs/chartist/dist/chartist.min.js"></script>
+<!--script src="../AdminTemplate/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></!--script-->
+
+<!-- Chartist Initialization -->
+<script>
+    window.addEventListener("load", function () {
+        var data = {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            series: [[5, 3, 4, 7, 2]]
+        };
+
+        var options = {
+            plugins: [Chartist.plugins.tooltip()]
+        };
+
+        // Ensure this runs ONLY after the chart container exists
+        var chartContainer = document.querySelector('#myChart');
+        if (chartContainer) {
+            new Chartist.Line('#myChart', data, options);
+        } else {
+            console.warn("Chart container #myChart not found.");
+        }
+    });
+</script>
+
+
 
 </asp:Content>

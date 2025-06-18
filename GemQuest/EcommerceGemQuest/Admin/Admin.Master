@@ -1,4 +1,4 @@
-﻿appcmd set config /section:system.webServer/directoryBrowse /enabled:true cd <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="EcommerceGemQuest.Admin.Admin" %>
+﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.master.cs" Inherits="EcommerceGemQuest.Admin.Admin" %>
 
 <!DOCTYPE html>
 
@@ -441,7 +441,7 @@
     <script src="../AdminTemplate/assets/extra-libs/c3/d3.min.js"></script>
     <script src="../AdminTemplate/assets/extra-libs/c3/c3.min.js"></script>
     <script src="../AdminTemplate/assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="../AdminTemplate/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
+    <!--<script src="../AdminTemplate/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script-->
     <script src="../AdminTemplate/assets/extra-libs/jvector/jquery-jvectormap-2.0.2.min.js"></script>
     <script src="../AdminTemplate/assets/extra-libs/jvector/jquery-jvectormap-world-mill-en.js"></script>
     <script src="../AdminTemplate/dist/js/pages/dashboards/dashboard1.min.js"></script>

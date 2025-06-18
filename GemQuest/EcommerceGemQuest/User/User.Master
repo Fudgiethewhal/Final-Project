@@ -4,6 +4,11 @@
 
 <html>
 <head runat="server">
+
+    <link rel="stylesheet" href="../AdminTemplate/assets/libs/chartist/dist/chartist.min.css" />
+    <link rel="stylesheet" href="../AdminTemplate/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.css" />
+
+
     <meta charset="utf-8">
     <title>EShopper - Bootstrap Shop Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">

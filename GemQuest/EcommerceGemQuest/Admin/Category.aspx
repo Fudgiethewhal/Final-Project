@@ -10,6 +10,29 @@
         };
     </script>
 
+    <script src="../AdminTemplate/assets/libs/chartist/dist/chartist.min.js"></script>
+<script>
+    window.addEventListener("load", function () {
+        // Ensure Chartist has loaded
+        var data = {
+            labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
+            series: [[5, 3, 4, 7, 2]]
+        };
+
+        var options = {
+            plugins: []
+        };
+
+        new Chartist.Line('#myChart', data, options);
+
+        // After chart is created, then add tooltip support
+        const tooltipScript = document.createElement("script");
+        tooltipScript.src = "../AdminTemplate/assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js";
+        document.body.appendChild(tooltipScript);
+    });
+</script>
+
+
     <script>
         function ImagePreview(input) {
             if (input.files && input.files[0]) {
@@ -88,6 +111,7 @@
         </div>
 
         <div class="col-sm-12 col-md-8">
+            <div id="myChart" class="ct-chart ct-golden-section"></div>
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Category List</h4>
